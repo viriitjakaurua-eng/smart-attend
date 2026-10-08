@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | Smart Attend</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="auth-page">
+  <main class="auth-shell">
+    <section class="auth-brand">
+      <a class="brand brand-light" href="index.html">
+        <span class="brand-mark">✓</span>
+        <span><strong>SMART</strong><b>ATTEND</b><small>SCAN, RECORD, SIMPLIFY</small></span>
+      </a>
+      <div>
+        <p class="eyebrow">SECURE ACCESS</p>
+        <h1>Welcome back.</h1>
+        <p>Sign in once per day to access your Smart Attend dashboard.</p>
+      </div>
+      <div class="auth-info">
+        <div><strong>Students</strong><span>Attendance & personal QR</span></div>
+        <div><strong>Staff</strong><span>Sessions, students & reports</span></div>
+        <div><strong>Developer</strong><span>Prototype administration</span></div>
+      </div>
+    </section>
+
+    <section class="login-card">
+      <div class="login-heading">
+        <p class="eyebrow">ACCOUNT LOGIN</p>
+        <h2>Sign in</h2>
+        <p>Enter your ID and password.</p>
+      </div>
+      <form id="loginForm">
+        <label for="username">Student No. / Staff ID</label>
+        <input id="username" name="username" type="text" autocomplete="username" placeholder="e.g. 2024050518" required>
+
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" placeholder="Enter password" required>
+
+        <button class="btn btn-primary btn-block" type="submit">Login</button>
+        <p id="loginMessage" class="form-message"></p>
+      </form>
+
+      <details class="demo-credentials">
+        <summary>Demo credentials</summary>
+        <p><b>Student:</b> 2024050518 / 1234</p>
+        <p><b>Lecturer:</b> lecturer / lecturer123</p>
+        <p><b>Admin:</b> admin / admin123</p>
+        <p><b>Developer:</b> developer / dev123</p>
+      </details>
+
+      <a class="back-link" href="index.html">← Back to home</a>
+    </section>
+  </main>
+  <script src="js/app.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>

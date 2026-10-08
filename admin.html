@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Staff Dashboard | Smart Attend</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body class="app-page">
+  <div id="appToast" class="toast"></div>
+  <header class="appbar">
+    <a class="brand" href="admin.html">
+      <span class="brand-mark">✓</span>
+      <span><strong>SMART</strong><b>ATTEND</b><small id="roleLabel">STAFF</small></span>
+    </a>
+    <div class="user-menu">
+      <span id="topUserName"></span>
+      <button class="btn btn-outline btn-sm" onclick="logout()">Logout</button>
+    </div>
+  </header>
+
+  <main class="dashboard">
+    <section class="welcome-card">
+      <div>
+        <p class="eyebrow">LECTURER / ADMIN / DEVELOPER</p>
+        <h1>Control centre.</h1>
+        <p>Create sessions, monitor students, manage records and export attendance.</p>
+      </div>
+      <div class="status-pill"><span class="status-dot"></span> Prototype database active</div>
+    </section>
+
+    <section class="stat-grid">
+      <div class="stat-card"><span>Students</span><strong id="studentStat">0</strong></div>
+      <div class="stat-card"><span>Modules</span><strong id="moduleStat">0</strong></div>
+      <div class="stat-card"><span>Attendance</span><strong id="attendanceStat">0</strong></div>
+      <div class="stat-card"><span>Active Sessions</span><strong id="sessionStat">0</strong></div>
+    </section>
+
+    <section class="dashboard-grid">
+      <article class="panel">
+        <div class="panel-heading"><div><p class="eyebrow">CLASS SESSION</p><h2>Create temporary QR</h2></div><span class="panel-icon">▦</span></div>
+        <form id="sessionForm">
+          <label for="moduleSelect">Module</label>
+          <select id="moduleSelect" required></select>
+
+          <label for="durationSelect">QR valid for</label>
+          <select id="durationSelect">
+            <option value="2">2 minutes</option>
+            <option value="5" selected>5 minutes</option>
+            <option value="10">10 minutes</option>
+            <option value="15">15 minutes</option>
+          </select>
+
+          <button class="btn btn-primary btn-block" type="submit">Generate Class QR</button>
+        </form>
+        <div id="activeQrBox" class="active-qr-box hidden">
+          <div id="sessionQr"></div>
+          <strong id="sessionModuleName"></strong>
+          <div class="session-code-label">SESSION CODE</div>
+          <div class="session-code" id="sessionCode">SA-XXXXXX</div>
+          <button id="copySessionCode" class="btn btn-dark btn-sm" type="button">Copy Session Code</button>
+          <span id="sessionTimer"></span>
+          <small>Display the QR to the class, or share the session code for manual attendance. It expires automatically.</small>
+        </div>
+      </article>
+
+      <article class="panel">
+        <div class="panel-heading"><div><p class="eyebrow">MANUAL FALLBACK</p><h2>Mark attendance</h2></div><span class="panel-icon">✓</span></div>
+        <form id="manualAttendanceForm">
+          <label for="manualStudent">Student</label>
+          <select id="manualStudent" required></select>
+          <label for="manualModule">Module</label>
+          <select id="manualModule" required></select>
+          <button class="btn btn-dark btn-block" type="submit">Record Manually</button>
+        </form>
+      </article>
+    </section>
+
+    <section class="panel">
+      <div class="panel-heading">
+        <div><p class="eyebrow">STUDENT MANAGEMENT</p><h2>Registered students</h2></div>
+        <button id="resetDemo" class="btn btn-outline btn-sm">Reset Demo Data</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Name</th><th>Student No.</th><th>Programme</th><th>Login</th></tr></thead>
+          <tbody id="studentTable"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-heading">
+        <div><p class="eyebrow">ATTENDANCE RECORDS</p><h2>All attendance</h2></div>
+        <div class="button-row">
+          <button id="exportCsv" class="btn btn-primary btn-sm">Export CSV</button>
+          <button id="clearAttendance" class="btn btn-outline btn-sm">Clear Records</button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Date</th><th>Time</th><th>Student</th><th>Student No.</th><th>Module</th><th>Method</th></tr></thead>
+          <tbody id="attendanceTable"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel developer-panel" id="developerPanel">
+      <div class="panel-heading"><div><p class="eyebrow">ADMINISTRATOR PANEL</p><h2>System controls</h2></div><span class="panel-icon">⚙</span></div>
+      <div class="control-grid">
+        <div><strong>LocalStorage database</strong><span>All demo users, sessions and attendance are stored locally in this browser.</span></div>
+        <div><strong>Duplicate prevention</strong><span>A student cannot record the same module/session twice.</span></div>
+        <div><strong>Daily login lock</strong><span>Each account can authenticate only once per calendar day in this prototype.</span></div>
+        <div><strong>Role access</strong><span>Student accounts open the student dashboard; staff accounts open this panel.</span></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/app.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

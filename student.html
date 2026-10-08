@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard | Smart Attend</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body class="app-page">
+  <div id="appToast" class="toast"></div>
+  <header class="appbar">
+    <a class="brand" href="student.html">
+      <span class="brand-mark">✓</span>
+      <span><strong>SMART</strong><b>ATTEND</b><small>STUDENT</small></span>
+    </a>
+    <div class="user-menu">
+      <span id="topUserName"></span>
+      <button class="btn btn-outline btn-sm" onclick="logout()">Logout</button>
+    </div>
+  </header>
+
+  <main class="dashboard">
+    <section class="welcome-card">
+      <div>
+        <p class="eyebrow">STUDENT DASHBOARD</p>
+        <h1>Hello, <span id="studentFirstName">Student</span> 👋</h1>
+        <p id="studentMeta"></p>
+      </div>
+      <div class="status-pill"><span class="status-dot"></span> Account verified</div>
+    </section>
+
+    <section class="dashboard-grid">
+      <article class="panel scan-panel">
+        <div class="panel-heading">
+          <div><p class="eyebrow">ATTENDANCE</p><h2>Scan class QR</h2></div>
+          <span class="panel-icon">▦</span>
+        </div>
+        <p>Ask your lecturer to display the temporary class QR code, then scan it below.</p>
+        <div id="reader" class="qr-reader"></div>
+        <div class="button-row">
+          <button id="startScanner" class="btn btn-primary">Start Scanner</button>
+          <button id="stopScanner" class="btn btn-outline" disabled>Stop Scanner</button>
+        </div>
+        <div class="manual-box">
+          <label for="manualQr">Manual fallback</label>
+          <div class="inline-form">
+            <input id="manualQr" inputmode="text" autocapitalize="characters" autocomplete="off" placeholder="Enter code e.g. SA-8F42K7">
+            <button id="manualSubmit" class="btn btn-dark">Submit</button>
+          </div>
+          <small>Camera unavailable? Enter the 9-character session code shown by your lecturer. JSON QR data is also supported.</small>
+        </div>
+      </article>
+
+      <article class="panel personal-qr-panel">
+        <div class="panel-heading">
+          <div><p class="eyebrow">PERSONAL QR</p><h2>My student QR</h2></div>
+          <span class="panel-icon">✓</span>
+        </div>
+        <p>Your personal QR identifies your registered student account.</p>
+        <div id="personalQr" class="personal-qr"></div>
+        <strong id="personalQrLabel"></strong>
+        <button id="downloadQr" class="btn btn-outline btn-block">Save QR image</button>
+      </article>
+    </section>
+
+    <section class="panel">
+      <div class="panel-heading">
+        <div><p class="eyebrow">MY RECORD</p><h2>Attendance history</h2></div>
+        <span id="attendanceCount" class="count-badge">0</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Date</th><th>Module</th><th>Time</th><th>Status</th></tr></thead>
+          <tbody id="studentAttendanceTable"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/app.js"></script>
+  <script src="js/student.js"></script>
+</body>
+</html>
